@@ -84,30 +84,23 @@ app.controller('userController', function ($scope, $http) {
     // ctx.arc(150, 30, 20, 1.3, 6.3)
     // ctx.stroke()
     // ctx.closePath()
+   
     var isDrawing = false;
-
-    // Function to start drawing
     function startDrawing(e) {
         isDrawing = true;
         ctx.beginPath();
         ctx.moveTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
     }
-
-    // Function to continue drawing
     function draw(e) {
         if (isDrawing) {
             ctx.lineTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
             ctx.stroke();
         }
     }
-
-    // Function to stop drawing
     function stopDrawing() {
         isDrawing = false;
         ctx.closePath();
     }
-
-    // Event listeners for mouse events
     canvas.addEventListener('mousedown', startDrawing);
     canvas.addEventListener('mousemove', draw);
     canvas.addEventListener('mouseup', stopDrawing);
